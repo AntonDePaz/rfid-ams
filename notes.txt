@@ -1,0 +1,174 @@
+
+font style
+message slide
+
+
+Admin-paz
+huawei-paz
+
+admin-pres
+president
+
+
+
+
+
+
+
+
+
+
+Right Click
+
+ <body oncontextmenu="return false">
+Keys
+
+document.onkeydown = function(e) {
+  if(event.keyCode == 123) {
+     return false;
+  }
+  if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
+     return false;
+  }
+  if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {
+     return false;
+  }
+  if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
+     return false;
+  }
+  if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+     return false;
+  }
+}
+
+
+
+
+
+window.open(url,'','fullscreen=yes')
+
+------------
+document.documentElement.requestFullScreen(); 
+-----------
+isFullScreen=()=>!(document.currentFullScreenElement==null)
+-------
+//#css
+
+*:fullscreen
+*:-ms-fullscreen,
+*:-webkit-full-screen,
+*:-moz-full-screen {
+   overflow: auto !important;
+}
+
+
+
+-------------------------
+html
+
+<p>
+  <label>Click the button below to toggle between fullscreen mode and windowed mode for this page.</label><br>
+  <button id="btnFullscreen" type="button">Toggle Fullscren</button>
+</p>
+<p>
+  <label>Click the image below to view it in fullscreen mode, click the image again to exit fullscreen mode.</label><br>
+  <img id="exampleImage" src="https://source.unsplash.com/featured/?nature">
+</p>
+
+
+--------------
+css
+
+#exampleImage { cursor:zoom-in; }
+#exampleImage:-webkit-full-screen { cursor:zoom-out; }
+#exampleImage:-moz-full-screen { cursor:zoom-out; }
+#exampleImage:-ms-fullscreen { cursor:zoom-out; }
+#exampleImage:fullscreen { cursor:zoom-out; }
+
+-------------------
+js
+
+function toggleFullscreen(elem) {
+  elem = elem || document.documentElement;
+  if (!document.fullscreenElement && !document.mozFullScreenElement &&
+    !document.webkitFullscreenElement && !document.msFullscreenElement) {
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (elem.msRequestFullscreen) {
+      elem.msRequestFullscreen();
+    } else if (elem.mozRequestFullScreen) {
+      elem.mozRequestFullScreen();
+    } else if (elem.webkitRequestFullscreen) {
+      elem.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+    }
+  } else {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.msExitFullscreen) {
+      document.msExitFullscreen();
+    } else if (document.mozCancelFullScreen) {
+      document.mozCancelFullScreen();
+    } else if (document.webkitExitFullscreen) {
+      document.webkitExitFullscreen();
+    }
+  }
+}
+
+document.getElementById('btnFullscreen').addEventListener('click', function() {
+  toggleFullscreen();
+});
+
+document.getElementById('exampleImage').addEventListener('click', function() {
+  toggleFullscreen(this);
+});
+
+
+-----------------
+SEARCH
+
+<div class="main">
+  
+  <!-- Actual search box -->
+  <div class="form-group has-search">
+    <span class="fa fa-search form-control-feedback"></span>
+    <input type="text" class="form-control" placeholder="Search">
+  </div>
+  
+  <!-- Another variation with a button -->
+  <div class="input-group">
+    <input type="text" class="form-control" placeholder="Search this blog">
+    <div class="input-group-append">
+      <button class="btn btn-secondary" type="button">
+        <i class="fa fa-search"></i>
+      </button>
+    </div>
+  </div>
+  
+  <p class="mt-4 text-center"><a href="https://www.gungorbudak.com/blog/2018/12/12/bootstrap-4-search-box-with-search-icon/">See how it's done on my blog</a></p>
+  
+</div>
+
+
+
+.main {
+    width: 50%;
+    margin: 50px auto;
+}
+
+/* Bootstrap 4 text input with search icon */
+
+.has-search .form-control {
+    padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}
